@@ -14,7 +14,8 @@ class Event < ApplicationRecord
 
         self.business_account_amount = (self.revenue - event_cost) / 2
 
-        self.earnings = self.revenue - self.business_account_amount - event_cost - self.delivery_fee
+        delivery_fee = self.delivery_fee || 0
+        self.earnings = self.revenue - self.business_account_amount - event_cost - delivery_fee
 
         self.earnings_per_group = self.earnings / worker_groups.length
     end 
