@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 9.99
+  description: MyText
+  source: MyString
+  channel: MyString
+  expense_date: 2021-08-14 18:30:36
+
+two:
+  amount: 9.99
+  description: MyText
+  source: MyString
+  channel: MyString
+  expense_date: 2021-08-14 18:30:36

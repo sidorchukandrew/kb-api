@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_173809) do
+ActiveRecord::Schema.define(version: 2021_08_14_224626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 2021_08_13_173809) do
     t.bigint "user_id"
     t.index ["event_id"], name: "index_events_users_on_event_id"
     t.index ["user_id"], name: "index_events_users_on_user_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.decimal "amount", precision: 8, scale: 2, default: "0.0"
+    t.text "description", default: "No description provided"
+    t.string "source", default: "app"
+    t.string "channel"
+    t.datetime "expense_date"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "plaid_transaction_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    before_action :authenticate_user, except: [:login]
+    before_action :authenticate_user, except: [:login, :check_credentials]
 
     def authenticate_user
         header = request.headers["Authorization"]
