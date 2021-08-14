@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   post "/login", to: "auth#login"
   put "/password", to: "auth#password"
+
+  get "/dashboard", to: "dashboard#show"
 end
