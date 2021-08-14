@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_050059) do
+ActiveRecord::Schema.define(version: 2021_08_13_173809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
     t.text "description"
-    t.date "event_date"
+    t.datetime "event_date"
     t.decimal "revenue", precision: 8, scale: 2
     t.decimal "business_account_amount", precision: 8, scale: 2
     t.decimal "event_cost_flat_fee", precision: 8, scale: 2
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_050059) do
     t.decimal "earnings_per_group", precision: 8, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_paid_out", default: false
   end
 
   create_table "events_users", id: false, force: :cascade do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_050059) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "number_of_logins", default: 0
   end
 
 end
