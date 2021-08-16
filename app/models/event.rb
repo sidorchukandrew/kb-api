@@ -8,14 +8,16 @@ class Event < ApplicationRecord
 
     private 
     def perform_calculations
+        tax = self.tax_flat_fee || 0
 
         event_cost = self.event_cost_flat_fee || 0
         event_cost = self.revenue * self.event_cost_percentage / 100 if self.event_cost_percentage
 
-        self.business_account_amount = (self.revenue - event_cost) / 2
-
         delivery_fee = self.delivery_fee || 0
-        self.earnings = self.revenue - self.business_account_amount - event_cost - delivery_fee
+
+        self.business_account_amount = (self.revenue - event_cost - tax - delivery_fee) / 2
+
+        self.earnings = self.business_account_amount
 
         self.earnings_per_group = self.earnings / worker_groups.length
     end 

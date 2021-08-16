@@ -35,6 +35,7 @@ class DashboardController < ApplicationController
         dashboard[:total_business_account] = 0
         dashboard[:total_paid_out_earnings] = 0
         dashboard[:total_unpaid_earnings] = 0
+        dashboard[:total_tax] = 0
 
         @all_events.each do |event|
             dashboard[:total_revenue] = dashboard[:total_revenue] + (event.revenue || 0)
@@ -42,6 +43,7 @@ class DashboardController < ApplicationController
             dashboard[:total_event_costs] = dashboard[:total_event_costs] + calculate_event_cost(event)
             dashboard[:total_delivery_fees] = dashboard[:total_delivery_fees] + (event.delivery_fee || 0)
             dashboard[:total_earnings] = dashboard[:total_earnings] + (event.earnings || 0)
+            dashboard[:total_tax] = dashboard[:total_tax] + (event.tax_flat_fee || 0)
 
             event.is_paid_out ? 
                 dashboard[:total_paid_out_earnings] = dashboard[:total_paid_out_earnings] + (event.earnings || 0) :  

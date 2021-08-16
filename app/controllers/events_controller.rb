@@ -63,6 +63,6 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.permit(:delivery_driver, :delivery_fee, :description, :event_cost_flat_fee, :event_cost_percentage, :event_date,
-        :revenue, :is_paid_out)
+        :revenue, :is_paid_out, :tax_flat_fee)
     end
 end
