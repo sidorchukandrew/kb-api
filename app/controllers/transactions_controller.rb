@@ -5,11 +5,6 @@ class TransactionsController < ApplicationController
         transactions = get_transactions
         already_imported_transaction_ids = Expense.pluck(:plaid_transaction_id)
 
-
-        transactions = transactions.filter do |transaction|
-            transaction.amount > 0 
-        end
-
         render json: transactions
     end
 
