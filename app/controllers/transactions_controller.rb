@@ -23,7 +23,7 @@ class TransactionsController < ApplicationController
     end
 
     def chase_account
-        [ENV["CHASE_ACCOUNT_ID_2"]]
+        [ENV["CHASE_ACCOUNT_ID"], ENV["CHASE_ACCOUNT_ID_2"]]
     end
 
     def get_transactions
