@@ -1,6 +1,6 @@
 class AuthController < ApplicationController
     def login
-        @current_user = User.find_by(username: params[:name])
+        @current_user = User.find_by(username: title_case_name)
 
         if @current_user && @current_user.authenticate(params[:password])
 
@@ -13,7 +13,7 @@ class AuthController < ApplicationController
     end
 
     def check_credentials
-        @current_user = User.find_by(username: params[:name])
+        @current_user = User.find_by(username: title_case_name)
 
         if @current_user && @current_user.authenticate(params[:password])
             render json: @current_user, except: [:password_digest]
@@ -27,5 +27,10 @@ class AuthController < ApplicationController
         @current_user.save
 
         render json: @current_user, except: [:password_digest]
+    end
+
+    private
+    def title_case_name
+        params[:name].titlecase
     end
 end
