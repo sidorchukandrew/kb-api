@@ -7,7 +7,7 @@ class TransactionsController < ApplicationController
 
 
         transactions = transactions.filter do |transaction|
-            transaction.amount > 0 && !already_imported_transaction_ids.include?(transaction.transaction_id)
+            transaction.amount > 0 
         end
 
         render json: transactions
@@ -23,11 +23,11 @@ class TransactionsController < ApplicationController
     end
 
     def chase_account
-        [ENV["CHASE_ACCOUNT_ID"]]
+        [ENV["CHASE_ACCOUNT_ID"], ENV["CHASE_ACCOUNT_ID_2"]]
     end
 
     def get_transactions
-        transactions_response = api.transactions.get(access_token, 4.months.ago, Time.now, account_ids: chase_account)
+        transactions_response = api.transactions.get(access_token, 12.months.ago, Time.now, account_ids: chase_account, count: 500)
         transactions_response.transactions
     end
 end
